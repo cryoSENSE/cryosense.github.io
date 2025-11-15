@@ -3,13 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cryoSENSE Pixel-Space Masking Animation</title>
+    <title>cryoSENSE: Compressive Cryo-EM Imaging</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* Landing Page Styles */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #landing-page {
+            min-height: 100vh;
+            width: 100%;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .landing-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            flex-shrink: 0;
+        }
+
+        .logo-container img {
+            width: 500px;
+        }
+
+        .title-container {
+            width: 100%;
+        }
+
+        #landing-page h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .authors {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .author-name {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .affiliations {
+            font-size: 1rem;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .affiliation {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .affiliation sup {
+            font-size: 0.8em;
+            margin-right: 4px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .right-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .paper-figure {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            background: white;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .paper-figure:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        .paper-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .abstract {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            line-height: 1.7;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .abstract h2 {
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .abstract p {
+            font-size: 1.05rem;
+            text-align: justify;
+            opacity: 0.98;
+        }
+
+        .key-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 24px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-card p {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            opacity: 0.97;
+        }
+
+        .links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 32px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.05rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0984e3;
+            border-color: white;
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        #interactive-demo {
+            padding: 40px 20px 20px;
+            background: #f7fafc;
+        }
+
+        #interactive-demo h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        #interactive-demo .demo-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            #landing-page h1 {
+                font-size: 2.2rem;
+            }
+
+            .key-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #landing-page h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo-container img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .authors {
+                font-size: 1rem;
+            }
+
+            .author-name {
+                margin-right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Landing Page Section -->
+    <section id="landing-page">
+        <div class="landing-content">
+            <!-- Header with Logo -->
+            <div class="header-section">
+                <div class="logo-container">
+                    <img src="assets/logo-white.png" alt="cryoSENSE Logo">
+                </div>
+                <div class="title-container">
+                    <h1>cryoSENSE: Compressive Sensing Enables High-throughput Microscopy with Sparse and Generative Priors on the Protein Cryo-EM Image Manifold</h1>
+                    <div class="authors">
+                        <span class="author-name">Author One<sup>1</sup></span>
+                        <span class="author-name">Author Two<sup>1,2</sup></span>
+                        <span class="author-name">Author Three<sup>2</sup></span>
+                        <span class="author-name">Author Four<sup>1</sup></span>
+                    </div>
+                    <div class="affiliations">
+                        <span class="affiliation"><sup>1</sup>Department/Institution Name</span>
+                        <span class="affiliation"><sup>2</sup>Second Institution Name</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="main-content">
+                <!-- Left Column: Abstract and Features -->
+                <div class="left-column">
+                    <div class="abstract">
+                        <h2>Abstract</h2>
+                        <p>
+                            Cryo-electron microscopy (cryo-EM) enables the atomic-resolution visualization of biomolecules; however,
+                            modern direct detectors generate data volumes that far exceed the available storage and transfer bandwidth,
+                            thereby constraining practical throughput. We introduce cryoSENSE, the computational realization of a hardware-software
+                            co-designed framework for compressive cryo-EM sensing and acquisition. We show that cryo-EM images of proteins lie
+                            on low-dimensional manifolds that can be independently represented using sparse priors in predefined bases and
+                            generative priors captured by a denoising diffusion model. cryoSENSE leverages these low-dimensional manifolds to
+                            enable faithful image reconstruction from spatial and Fourier-domain undersampled measurements while preserving
+                            downstream structural resolution. In experiments, cryoSENSE increases acquisition throughput by up to 2.5× while
+                            retaining the original 3D resolution, offering controllable trade-offs between the number of masked measurements
+                            and the level of downsampling.
+                        </p>
+                    </div>
+
+                    <div class="key-features">
+                        <div class="feature-card">
+                            <h3>High Throughput</h3>
+                            <p>Achieves up to 2.5× compression factor while preserving 3D structural resolution at near-atomic detail.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Dual Prior Framework</h3>
+                            <p>Combines handcrafted sparsity priors (DCT, wavelets, TV) with learned generative diffusion priors for robust reconstruction.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Flexible Acquisition</h3>
+                            <p>Supports both pixel-space masking (coded apertures) and Fourier-space masking (phase plates) strategies.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Biological Fidelity</h3>
+                            <p>Preserves conformational heterogeneity (80-88% cluster agreement) and enables accurate atomic model building.</p>
+                        </div>
+                    </div>
+
+                    <div class="links">
+                        <a href="#" class="btn btn-primary" target="_blank">Read Paper (PDF)</a>
+                        <a href="#interactive-demo" class="btn">Interactive Demo ↓</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Paper Figure -->
+                <div class="right-column">
+                    <div class="paper-figure">
+                        <img src="assets/main_fig.png" alt="cryoSENSE Main Figure">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <div id="interactive-demo">
+        <h2>Interactive Pixel-Space Masking Visualization</h2>
+        <p class="demo-subtitle">Explore how cryoSENSE compresses cryo-EM images using pixel-space masking with block-wise summation</p>
+    </div>
+
     <div id="app-container">
         <!-- Header -->
         <header>

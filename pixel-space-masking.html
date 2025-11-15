@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cryoSENSE Pixel-Space Masking Animation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Header -->
+        <header>
+            <h1>cryoSENSE: Pixel-Space Masking with Block-wise Summation</h1>
+            <p>Interactive visualization of compressive cryo-EM imaging</p>
+        </header>
+
+        <!-- Control Panel -->
+        <div id="control-panel">
+            <div class="control-group">
+                <label>Block Size (K): <span id="k-value">32</span></label>
+                <input type="range" id="k-slider" min="2" max="64" value="32" step="2">
+            </div>
+            <div class="control-group">
+                <label>Number of Masks (b): <span id="b-value">1</span></label>
+                <input type="range" id="b-slider" min="1" max="4" value="1">
+            </div>
+            <div class="control-group">
+                <button id="play-pause">Pause</button>
+                <button id="reset">Reset</button>
+                <button id="step">Step</button>
+            </div>
+            <div class="control-group">
+                <label>Speed (ms): <span id="speed-value">400</span></label>
+                <input type="range" id="speed-slider" min="50" max="1000" value="400" step="50">
+            </div>
+        </div>
+
+        <!-- Main Visualization Grid -->
+        <div id="visualization-grid">
+            <!-- Row 1: Separated Views -->
+            <div class="vis-row">
+                <div class="vis-panel">
+                    <h3>Original Image</h3>
+                    <canvas id="original-canvas" width="256" height="256"></canvas>
+                </div>
+                <div class="vis-panel">
+                    <h3>Current Mask (Mask <span id="mask-index">1</span>/<span id="total-masks">1</span>)</h3>
+                    <canvas id="mask-only-canvas" width="256" height="256"></canvas>
+                </div>
+                <div class="vis-panel">
+                    <h3>Compression Info</h3>
+                    <div id="stats-panel">
+                        <p>Compression Factor C = <span id="compression-factor">1024</span></p>
+                        <p>Original: 128�128 = 16,384 pixels</p>
+                        <p>Compressed: <span id="compressed-size">4�4�1 = 16 pixels</span></p>
+                        <p>Data Reduction: <span id="reduction">99.9%</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Animation Process -->
+            <div class="vis-row">
+                <div class="vis-panel">
+                    <h3>Masked Image with Block Grid</h3>
+                    <canvas id="masked-canvas" width="256" height="256"></canvas>
+                </div>
+                <div class="vis-panel">
+                    <h3>Block Summation Process</h3>
+                    <canvas id="process-canvas" width="256" height="256"></canvas>
+                    <div id="current-sum">Current Block Sum: <span id="sum-value">0</span></div>
+                </div>
+                <div class="vis-panel">
+                    <h3>Compressed Output</h3>
+                    <canvas id="output-canvas" width="256" height="256"></canvas>
+                </div>
+            </div>
+
+            <!-- Row 3: Matrix View -->
+            <div class="vis-row">
+                <div id="matrix-view">
+                    <h3>Matrix Representation (Compressed Output)</h3>
+                    <div id="matrix-display"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/visualization.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
