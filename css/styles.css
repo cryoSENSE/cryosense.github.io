@@ -76,6 +76,12 @@ header p {
     cursor: pointer;
 }
 
+.button-controls {
+    flex-direction: row;
+    margin-left: auto;
+    min-width: auto;
+}
+
 .control-group button {
     padding: 10px 20px;
     background: #0066cc;
@@ -84,7 +90,7 @@ header p {
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 20px;
     transition: background 0.2s;
 }
 

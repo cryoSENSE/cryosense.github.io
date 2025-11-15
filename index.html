@@ -440,8 +440,8 @@
 
     <!-- Interactive Demo Section -->
     <div id="interactive-demo">
-        <h2>Interactive Pixel-Space Masking Visualization</h2>
-        <p class="demo-subtitle">Explore how cryoSENSE compresses cryo-EM images using pixel-space masking with block-wise summation</p>
+        <h2>Interactive Masking Strategies</h2>
+        <p class="demo-subtitle">Explore how cryoSENSE compresses cryo-EM images using pixel-space and Fourier-space masking.</p>
     </div>
 
     <div id="app-container">
@@ -461,14 +461,16 @@
                 <label>Number of Masks (b): <span id="b-value">1</span></label>
                 <input type="range" id="b-slider" min="1" max="4" value="1">
             </div>
-            <div class="control-group">
-                <button id="play-pause">Pause</button>
-                <button id="reset">Reset</button>
-                <button id="step">Step</button>
-            </div>
+            
             <div class="control-group">
                 <label>Speed (ms): <span id="speed-value">400</span></label>
                 <input type="range" id="speed-slider" min="50" max="1000" value="400" step="50">
+            </div>
+
+            <div class="control-group button-controls">
+                <button id="play-pause" aria-label="Pause">⏸</button>
+                <button id="reset" aria-label="Reset">↻</button>
+                <button id="step" aria-label="Step">⏭</button>
             </div>
         </div>
 
@@ -512,8 +514,8 @@
                 </div>
             </div>
 
-            <!-- Row 3: Matrix View -->
-            <div class="vis-row">
+        <!-- Row 3: Matrix View -->
+            <div class="vis-row" style="display: none;">
                 <div id="matrix-view">
                     <h3>Matrix Representation (Compressed Output)</h3>
                     <div id="matrix-display"></div>

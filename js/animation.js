@@ -332,11 +332,12 @@ class CryoSENSEAnimation {
     }
 
     /**
-     * Update play/pause button text
+     * Update play/pause button icon
      */
     updatePlayPauseButton() {
         const btn = document.getElementById('play-pause');
-        btn.textContent = this.isPlaying ? 'Pause' : 'Play';
+        btn.textContent = this.isPlaying ? '⏸' : '▶';
+        btn.setAttribute('aria-label', this.isPlaying ? 'Pause' : 'Play');
         btn.style.background = this.isPlaying ? '#28a745' : '#007bff';
     }
 
