@@ -18,7 +18,7 @@
         #landing-page {
             min-height: 100vh;
             width: 100%;
-            padding: 60px 20px;
+            padding: 40px 20px;
             background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
             color: white;
             display: flex;
@@ -37,8 +37,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .logo-container {
@@ -46,7 +46,7 @@
         }
 
         .logo-container img {
-            width: 500px;
+            width: 300px;
         }
 
         .title-container {
@@ -54,7 +54,7 @@
         }
 
         #landing-page h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 25px;
             line-height: 1.15;
@@ -92,10 +92,10 @@
         }
 
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 20px;
         }
 
         .left-column {
@@ -104,20 +104,21 @@
             gap: 30px;
         }
 
-        .right-column {
+        .paper-figure-container {
+            width: 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
         }
 
         .paper-figure {
             width: 100%;
-            max-width: 650px;
+            max-width: 900px;
             border-radius: 12px;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             background: white;
-            padding: 20px;
+            padding: 15px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .paper-figure:hover {
@@ -130,6 +131,79 @@
             height: auto;
             display: block;
             border-radius: 6px;
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: #74b9ff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .abstract {
@@ -248,10 +322,6 @@
         }
 
         @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
             #landing-page h1 {
                 font-size: 2.2rem;
             }
@@ -305,9 +375,16 @@
                 </div>
             </div>
 
-            <!-- Main Content Grid -->
+            <!-- Main Content -->
             <div class="main-content">
-                <!-- Left Column: Abstract and Features -->
+                <!-- Full Width Paper Figure -->
+                <div class="paper-figure-container">
+                    <div class="paper-figure" id="main-figure" onclick="openLightbox()">
+                        <img src="assets/main_fig.png" alt="cryoSENSE Main Figure">
+                    </div>
+                </div>
+
+                <!-- Abstract and Features -->
                 <div class="left-column">
                     <div class="abstract">
                         <h2>Abstract</h2>
@@ -349,16 +426,17 @@
                         <a href="#interactive-demo" class="btn">Interactive Demo ↓</a>
                     </div>
                 </div>
-
-                <!-- Right Column: Paper Figure -->
-                <div class="right-column">
-                    <div class="paper-figure">
-                        <img src="assets/main_fig.png" alt="cryoSENSE Main Figure">
-                    </div>
-                </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img src="assets/main_fig.png" alt="cryoSENSE Main Figure - Full Size">
+        </div>
+    </div>
 
     <!-- Interactive Demo Section -->
     <div id="interactive-demo">
@@ -443,6 +521,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Lightbox Script -->
+    <script>
+        function openLightbox() {
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 
     <script src="js/utils.js"></script>
     <script src="js/visualization.js"></script>
