@@ -447,15 +447,20 @@
     <div id="app-container">
         <!-- Header -->
         <header>
-            <h1>cryoSENSE: Pixel-Space Masking with Block-wise Summation</h1>
-            <p>Interactive visualization of compressive cryo-EM imaging</p>
+            <h1>Pixel-Space Masking with Block-wise Summation</h1>
         </header>
 
         <!-- Control Panel -->
         <div id="control-panel">
             <div class="control-group">
                 <label>Block Size (K): <span id="k-value">32</span></label>
-                <input type="range" id="k-slider" min="2" max="64" value="32" step="2">
+                <select id="k-slider">
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                    <option value="16">16</option>
+                    <option value="32" selected>32</option>
+                </select>
             </div>
             <div class="control-group">
                 <label>Number of Masks (b): <span id="b-value">1</span></label>
@@ -490,8 +495,8 @@
                     <h3>Compression Info</h3>
                     <div id="stats-panel">
                         <p>Compression Factor C = <span id="compression-factor">1024</span></p>
-                        <p>Original: 128�128 = 16,384 pixels</p>
-                        <p>Compressed: <span id="compressed-size">4�4�1 = 16 pixels</span></p>
+                        <p>Original: 128x128 = 16,384 pixels</p>
+                        <p>Compressed: <span id="compressed-size">4x4x1 = 16 pixels</span></p>
                         <p>Data Reduction: <span id="reduction">99.9%</span></p>
                     </div>
                 </div>

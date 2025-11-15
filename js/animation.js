@@ -79,10 +79,10 @@ class CryoSENSEAnimation {
      * Setup control event listeners
      */
     setupControls() {
-        // K slider
+        // K selector
         const kSlider = document.getElementById('k-slider');
         const kValue = document.getElementById('k-value');
-        kSlider.addEventListener('input', (e) => {
+        kSlider.addEventListener('change', (e) => {
             this.K = parseInt(e.target.value);
             kValue.textContent = this.K;
             this.resetAnimation();
