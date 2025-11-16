@@ -529,6 +529,324 @@
         </div>
     </div>
 
+    <!-- Fourier Space Masking Section -->
+    <div id="fourier-masking-section">
+        <h2>Fourier Space Masking</h2>
+        <p class="section-subtitle">C is the compression ratio. The higher the C, the more aggressive the compression.</p>
+
+        <div class="carousel-controls">
+            <button class="carousel-nav carousel-prev" id="fourier-prev" aria-label="Previous">‹</button>
+            <button class="carousel-nav carousel-next" id="fourier-next" aria-label="Next">›</button>
+        </div>
+
+        <div class="fourier-carousel">
+            <div class="fourier-slides-container">
+                <!-- C = 2 -->
+                <div class="compression-group fourier-slide active" data-slide="0">
+                    <h3 class="compression-ratio">C = 2</h3>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Uniform Random</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_2.png" alt="Uniform Random Mask C=2">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_2_output.png" alt="Uniform Random Output C=2">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Annular Ring</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_2.png" alt="Annular Ring Mask C=2">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_2_output.png" alt="Annular Ring Output C=2">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Radial Spoke</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_2.png" alt="Radial Spoke Mask C=2">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_2_output.png" alt="Radial Spoke Output C=2">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C = 2.5 -->
+                <div class="compression-group fourier-slide" data-slide="1">
+                    <h3 class="compression-ratio">C = 2.5</h3>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Uniform Random</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_2_5.png" alt="Uniform Random Mask C=2.5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_2_5_output.png" alt="Uniform Random Output C=2.5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Annular Ring</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_2_5.png" alt="Annular Ring Mask C=2.5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_2_5_output.png" alt="Annular Ring Output C=2.5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Radial Spoke</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_2_5.png" alt="Radial Spoke Mask C=2.5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_2_5_output.png" alt="Radial Spoke Output C=2.5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C = 3.33 -->
+                <div class="compression-group fourier-slide" data-slide="2">
+                    <h3 class="compression-ratio">C = 3.33</h3>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Uniform Random</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_3_33.png" alt="Uniform Random Mask C=3.33">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_3_33_output.png" alt="Uniform Random Output C=3.33">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Annular Ring</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_3_33.png" alt="Annular Ring Mask C=3.33">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_3_33_output.png" alt="Annular Ring Output C=3.33">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Radial Spoke</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_3_33.png" alt="Radial Spoke Mask C=3.33">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_3_33_output.png" alt="Radial Spoke Output C=3.33">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C = 5 -->
+                <div class="compression-group fourier-slide" data-slide="3">
+                    <h3 class="compression-ratio">C = 5</h3>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Uniform Random</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_5.png" alt="Uniform Random Mask C=5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_5_output.png" alt="Uniform Random Output C=5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Annular Ring</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_5.png" alt="Annular Ring Mask C=5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_5_output.png" alt="Annular Ring Output C=5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Radial Spoke</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_5.png" alt="Radial Spoke Mask C=5">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_5_output.png" alt="Radial Spoke Output C=5">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C = 10 -->
+                <div class="compression-group fourier-slide" data-slide="4">
+                    <h3 class="compression-ratio">C = 10</h3>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Uniform Random</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_10.png" alt="Uniform Random Mask C=10">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/uniform_random_mask_10_output.png" alt="Uniform Random Output C=10">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Annular Ring</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_10.png" alt="Annular Ring Mask C=10">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/annular_ring_mask_10_output.png" alt="Annular Ring Output C=10">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mask-type-section">
+                        <h4 class="mask-type-title">Radial Spoke</h4>
+                        <div class="mask-results">
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/x_star.png" alt="Ground Truth">
+                                <p class="image-label">x*</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_10.png" alt="Radial Spoke Mask C=10">
+                                <p class="image-label">Mask</p>
+                            </div>
+                            <div class="fourier-image-panel">
+                                <img src="assets/fourier/radial_spoke_mask_10_output.png" alt="Radial Spoke Output C=10">
+                                <p class="image-label">y</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+        </div>
+    </div>
+
     <!-- Lightbox Script -->
     <script>
         function openLightbox() {
@@ -546,6 +864,59 @@
             if (event.key === 'Escape') {
                 closeLightbox();
             }
+        });
+    </script>
+
+    <!-- Fourier Carousel Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.fourier-slide');
+            const indicators = document.querySelectorAll('.carousel-indicators .indicator');
+            const prevBtn = document.getElementById('fourier-prev');
+            const nextBtn = document.getElementById('fourier-next');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                // Remove active class from all slides and indicators
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+
+                // Add active class to current slide and indicator
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            // Event listeners for navigation buttons
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            // Event listeners for indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (event.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            });
         });
     </script>
 
