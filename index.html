@@ -847,6 +847,74 @@
         </div>
     </div>
 
+    <!-- Measurements vs Reconstruction Section -->
+    <div id="measurements-recon-section">
+        <h2>From Low-Res Measurements to High-Res Reconstruction using cryoSENSE!</h2>
+        <p class="section-subtitle">Drag the slider to compare reconstructed images (left) with compressed measurements (right)</p>
+
+        <div class="comparison-container">
+            <!-- Block Size 2 Comparison -->
+            <div class="comparison-group">
+                <h3 class="comparison-title">Block Size = 2</h3>
+                <div class="image-comparison-slider" data-slider="1">
+                    <div class="comparison-images">
+                        <img src="assets/measurements_vs_recon/block_size2_reconstructed.png" alt="Block Size 2 Reconstructed" class="img-overlay">
+                        <img src="assets/measurements_vs_recon/block_size2_measurement.png" alt="Block Size 2 Measurement" class="img-base">
+                    </div>
+                    <div class="slider-handle">
+                        <div class="slider-line"></div>
+                        <div class="slider-button">
+                            <div class="slider-arrows">
+                                <span>←</span>
+                                <span>→</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-labels">
+                    <span class="label-left">Reconstructed</span>
+                    <span class="label-right">Measurement</span>
+                </div>
+
+                <!-- Diffusion Process GIF -->
+                <div class="diffusion-gif-container">
+                    <h4 class="diffusion-title">Diffusion Reconstruction Process</h4>
+                    <img src="assets/measurements_vs_recon/block_size2_diffusion_process.gif" alt="Block Size 2 Diffusion Process" class="diffusion-gif">
+                </div>
+            </div>
+
+            <!-- Block Size 32 Comparison -->
+            <div class="comparison-group">
+                <h3 class="comparison-title">Block Size = 32</h3>
+                <div class="image-comparison-slider" data-slider="2">
+                    <div class="comparison-images">
+                        <img src="assets/measurements_vs_recon/block_size32_reconstructed_image.png" alt="Block Size 32 Reconstructed" class="img-overlay">
+                        <img src="assets/measurements_vs_recon/block_size32_measurement.png" alt="Block Size 32 Measurement" class="img-base">
+                    </div>
+                    <div class="slider-handle">
+                        <div class="slider-line"></div>
+                        <div class="slider-button">
+                            <div class="slider-arrows">
+                                <span>←</span>
+                                <span>→</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-labels">
+                    <span class="label-left">Reconstructed</span>
+                    <span class="label-right">Measurement</span>
+                </div>
+
+                <!-- Diffusion Process GIF -->
+                <div class="diffusion-gif-container">
+                    <h4 class="diffusion-title">Diffusion Reconstruction Process</h4>
+                    <img src="assets/measurements_vs_recon/block_size32_diffusion_process.gif" alt="Block Size 32 Diffusion Process" class="diffusion-gif">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Lightbox Script -->
     <script>
         function openLightbox() {
@@ -916,6 +984,70 @@
                 } else if (event.key === 'ArrowRight') {
                     nextSlide();
                 }
+            });
+        });
+    </script>
+
+    <!-- Image Comparison Slider Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliders = document.querySelectorAll('.image-comparison-slider');
+
+            sliders.forEach(slider => {
+                const handle = slider.querySelector('.slider-handle');
+                const overlay = slider.querySelector('.img-overlay');
+                let isDragging = false;
+
+                function updateSlider(clientX) {
+                    const rect = slider.getBoundingClientRect();
+                    const x = clientX - rect.left;
+                    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+
+                    // Update overlay clip-path
+                    overlay.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+
+                    // Update handle position
+                    handle.style.left = `${percent}%`;
+                }
+
+                // Mouse events
+                handle.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    e.preventDefault();
+                });
+
+                slider.addEventListener('mousemove', (e) => {
+                    if (isDragging) {
+                        updateSlider(e.clientX);
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+
+                // Touch events for mobile
+                handle.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    e.preventDefault();
+                }, { passive: false });
+
+                slider.addEventListener('touchmove', (e) => {
+                    if (isDragging && e.touches.length > 0) {
+                        updateSlider(e.touches[0].clientX);
+                    }
+                }, { passive: false });
+
+                document.addEventListener('touchend', () => {
+                    isDragging = false;
+                });
+
+                // Click anywhere on slider to move handle
+                slider.addEventListener('click', (e) => {
+                    if (e.target !== handle && !handle.contains(e.target)) {
+                        updateSlider(e.clientX);
+                    }
+                });
             });
         });
     </script>
