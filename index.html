@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
         /* Landing Page Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -18,7 +22,7 @@
         #landing-page {
             min-height: 100vh;
             width: 100%;
-            padding: 40px 20px;
+            padding: 80px 20px 40px 20px;
             background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
             color: white;
             display: flex;
@@ -46,7 +50,8 @@
         }
 
         .logo-container img {
-            width: 300px;
+            width: 350px;
+            height: auto;
         }
 
         .title-container {
@@ -62,7 +67,7 @@
         }
 
         .authors {
-            font-size: 1.2rem;
+            font-size: 1.6rem;
             margin-bottom: 8px;
             font-weight: 500;
             line-height: 1.6;
@@ -74,7 +79,7 @@
         }
 
         .affiliations {
-            font-size: 1rem;
+            font-size: 1.3rem;
             margin-top: 15px;
             margin-bottom: 20px;
             opacity: 0.9;
@@ -110,27 +115,124 @@
             justify-content: center;
         }
 
-        .paper-figure {
+        .paper-figure-slideshow {
+            position: relative;
             width: 100%;
-            max-width: 900px;
             border-radius: 12px;
             box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
             background: white;
             padding: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: box-shadow 0.3s ease;
         }
 
-        .paper-figure:hover {
-            transform: translateY(-5px);
+        .paper-figure-slideshow:hover {
             box-shadow: 0 16px 45px rgba(0, 0, 0, 0.3);
         }
 
-        .paper-figure img {
+        .figure-slide {
+            display: none;
             width: 100%;
-            height: auto;
+            animation: fadeInSlide 0.5s ease;
+        }
+
+        .figure-slide.active {
+            display: block;
+        }
+
+        .figure-slide img {
+            width: 100%;
             display: block;
             border-radius: 6px;
+        }
+
+        .figure-caption {
+            background: rgba(9, 132, 227, 0.1);
+            color: #2d3748;
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #0984e3;
+        }
+
+        .figure-caption p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .figure-caption strong {
+            color: #0984e3;
+        }
+
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 40px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            user-select: none;
+            transition: all 0.3s ease;
+            z-index: 10;
+            line-height: 1;
+            font-weight: bold;
+        }
+
+        .slideshow-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slideshow-prev {
+            left: 10px;
+        }
+
+        .slideshow-next {
+            right: 10px;
+        }
+
+        .slideshow-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .fig-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .fig-indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .fig-indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* Lightbox Modal Styles */
@@ -337,7 +439,8 @@
             opacity: 0.95;
         }
 
-        .gif-comparison-item img {
+        .gif-comparison-item img,
+        .gif-comparison-item video {
             width: 100%;
             max-width: 400px;
             border-radius: 8px;
@@ -439,22 +542,106 @@
         }
 
         @media (max-width: 768px) {
+            #landing-page {
+                padding-top: 70px;
+            }
+
             #landing-page h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+
+            .header-section {
+                gap: 10px;
+                margin-bottom: 20px;
             }
 
             .logo-container img {
-                width: 120px;
-                height: 120px;
+                width: 180px;
+                height: auto;
             }
 
             .authors {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                line-height: 1.4;
             }
 
             .author-name {
-                margin-right: 10px;
+                margin-right: 8px;
+                display: inline;
             }
+
+            .affiliations {
+                font-size: 0.85rem;
+            }
+
+            .affiliation {
+                margin-bottom: 3px;
+            }
+
+            .paper-figure-slideshow {
+                padding: 10px;
+            }
+
+            .slideshow-nav {
+                font-size: 30px;
+                padding: 8px 12px;
+            }
+
+            .slideshow-prev {
+                left: 5px;
+            }
+
+            .slideshow-next {
+                right: 5px;
+            }
+
+            .figure-caption {
+                padding: 12px 15px;
+                margin-top: 10px;
+                font-size: 0.85rem;
+            }
+
+            .figure-caption p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 8px 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: #74b9ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #0984e3;
+        }
+
+        .footer-heart {
+            color: #ff6b6b;
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
     </style>
 </head>
@@ -477,14 +664,17 @@
                 <div class="title-container">
                     <h1>cryoSENSE: Compressive Sensing Enables High-throughput Microscopy with Sparse and Generative Priors on the Protein Cryo-EM Image Manifold</h1>
                     <div class="authors">
-                        <span class="author-name">Author One<sup>1</sup></span>
-                        <span class="author-name">Author Two<sup>1,2</sup></span>
-                        <span class="author-name">Author Three<sup>2</sup></span>
-                        <span class="author-name">Author Four<sup>1</sup></span>
+                        <span class="author-name">Zain Shabeeb<sup>1,†</sup></span>
+                        <span class="author-name">Daniel Saeedi<sup>2,†</sup></span>
+                        <span class="author-name">Darin Tsui<sup>2,†</sup></span>
+                        <span class="author-name">Vida Jamali<sup>1,*</sup></span>
+                        <span class="author-name">Amirali Aghazadeh<sup>2,*</sup></span>
                     </div>
                     <div class="affiliations">
-                        <span class="affiliation"><sup>1</sup>Department/Institution Name</span>
-                        <span class="affiliation"><sup>2</sup>Second Institution Name</span>
+                        <span class="affiliation"><sup>1</sup>School of Chemical and Biomolecular Engineering, Georgia Institute of Technology</span>
+                        <span class="affiliation"><sup>2</sup>School of Electrical and Computer Engineering, Georgia Institute of Technology</span>
+                        <span class="affiliation"><sup>†</sup>Equal contributions</span>
+                        <span class="affiliation"><sup>*</sup>Correspondence to: vida@gatech.edu, amiralia@gatech.edu</span>
                     </div>
                 </div>
             </div>
@@ -500,11 +690,11 @@
                     <div class="gif-comparison-row">
                         <div class="gif-comparison-item">
                             <div class="gif-comparison-label">Ground Truth</div>
-                            <img src="assets/3d_volume.gif" alt="3D Volume Ground Truth">
+                            <video src="assets/empiar_10648_original_rotation.mp4" autoplay loop muted playsinline></video>
                         </div>
                         <div class="gif-comparison-item">
                             <div class="gif-comparison-label">cryoSENSE Reconstruction</div>
-                            <img src="assets/3d_volume.gif" alt="3D Volume cryoSENSE Reconstruction">
+                            <video src="assets/empiar_10648_cryosense_rotation.mp4" autoplay loop muted playsinline></video>
                         </div>
                     </div>
 
@@ -515,19 +705,55 @@
                     <div class="gif-comparison-row">
                         <div class="gif-comparison-item">
                             <div class="gif-comparison-label">Ground Truth</div>
-                            <img src="assets/reconstructed_atomic_model.gif" alt="Atomic Model Ground Truth">
+                            <video src="assets/empiar_10648_original_atomic_structure_rotation.mp4" autoplay loop muted playsinline></video>
                         </div>
                         <div class="gif-comparison-item">
                             <div class="gif-comparison-label">cryoSENSE Reconstruction</div>
-                            <img src="assets/reconstructed_atomic_model.gif" alt="Atomic Model cryoSENSE Reconstruction">
+                            <video src="assets/empiar_10648_cryosense_atomic_structure_rotation.mp4" autoplay loop muted playsinline></video>
                         </div>
                     </div>
                 </div>
 
-                <!-- Full Width Paper Figure -->
+                <!-- Full Width Paper Figure Slideshow -->
                 <div class="paper-figure-container">
-                    <div class="paper-figure" id="main-figure" onclick="openLightbox()">
-                        <img src="assets/main_fig.png" alt="cryoSENSE Main Figure">
+                    <div class="paper-figure-slideshow">
+                        <div class="slideshow-nav slideshow-prev" onclick="changeFigure(-1)" aria-label="Previous figure">‹</div>
+                        <div class="slideshow-nav slideshow-next" onclick="changeFigure(1)" aria-label="Next figure">›</div>
+
+                        <div class="figure-slide active" data-slide="0">
+                            <img src="assets/Figure1.png" alt="cryoSENSE Figure 1">
+                            <div class="figure-caption">
+                                <p><strong>Figure 1:</strong> <strong>cryoSENSE increases data throughput by preserving 3D structural detail under high compression factors.</strong> <strong>a</strong>, Original 3D cryo-EM volume from uncompressed particle images. <strong>b</strong>, cryoSENSE 3D reconstructions from compressively acquired images, using generative (top row) and sparse priors (bottom row). Volumes are color-coded by their FSC resolution (lower = better).</p>
+                            </div>
+                        </div>
+
+                        <div class="figure-slide" data-slide="1">
+                            <img src="assets/Figure2.png" alt="cryoSENSE Figure 2">
+                            <div class="figure-caption">
+                                <p><strong>Figure 2:</strong> <strong>Overview of cryoSENSE.</strong> <strong>a</strong>, cryoSENSE employs pixel-space and Fourier-space masking strategies to obtain compressed measurements. <strong>b</strong>, sparsity priors enable image recovery via proximal gradient descent. <strong>c</strong>, generative priors learn a low-dimensional manifold of cryo-EM images and guide a diffusion process to generate images consistent with the measurements. <strong>d</strong>, cryoSENSE enables high-throughput acquisition of cryo-EM images, which are then validated through downstream biological tasks such as <strong>e</strong>, 3D volume reconstruction, atomic model building, and conformational heterogeneity analysis.</p>
+                            </div>
+                        </div>
+
+                        <div class="figure-slide" data-slide="2">
+                            <img src="assets/Figure3.png" alt="cryoSENSE Figure 3">
+                            <div class="figure-caption">
+                                <p><strong>Figure 3:</strong> <strong>a</strong>, Example EMPIAR-10076 particle images used for CryoDRGN heterogeneity analysis. <strong>b</strong>, UMAP projection of CryoDRGN latent space trained on original 128&times;128 images, showing four distinct conformational clusters colored by GMM labels. <strong>c</strong>, Example cryoSENSE - DDPM reconstructions obtained from <strong>K = 16</strong> downsampled images with <strong>C = 1.25</strong>. <strong>d</strong>, UMAP projection of CryoDRGN latent space trained on DDPM reconstructions, colored by original GMM cluster labels from <strong>b</strong>. <strong>e</strong>, Example cryoSENSE - DCT reconstructions obtained from <strong>K = 16</strong> downsampled images with <strong>C = 1.25</strong>. <strong>f</strong>, UMAP projection of CryoDRGN latent space trained on DCT reconstructions, colored by original GMM cluster labels from <strong>b</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="figure-slide" data-slide="3">
+                            <img src="assets/Figure4.png" alt="cryoSENSE Figure 4">
+                            <div class="figure-caption">
+                                <p><strong>Figure 4:</strong> <strong>a</strong>, Atomic models from ModelAngelo fit into reconstructed cryo-EM 3D volumes for the Original dataset (EMPIAR-10648) and cryoSENSE reconstructions (K=2, C=1.33) using DCT and DDPM priors. Chains are colored by ModelAngelo prediction confidence scores. <strong>b</strong>, FSC curves for the three corresponding cryo-EM 3D volumes. <strong>c</strong>, Chain-level sequence alignment score vs. sequence identity for matched chains between Original vs. DDPM and Original vs. DCT; marker size reflects backbone RMSD. <strong>d</strong>, cryoSENSE - DDPM atomic model with four representative chain regions highlighted, corresponding to the same colored regions shown in <strong>g</strong>. <strong>e</strong>, First example structural comparison of the highlighted region in the Original model with its corresponding DDPM- and DCT-reconstructed regions. <strong>f</strong>, Second example structural comparison of the highlighted region in the Original model with its corresponding DDPM- and DCT-reconstructed regions. <strong>g</strong>, Original atomic model with four chain regions highlighted corresponding to the same regions as in <strong>d</strong> and <strong>h</strong>. <strong>h</strong>, cryoSENSE - DCT atomic model with four representative chain regions highlighted, corresponding to the same colored regions shown in <strong>g</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="slideshow-indicators" style="display: none;">
+                            <span class="fig-indicator active" onclick="goToFigure(0)" data-slide="0"></span>
+                            <span class="fig-indicator" onclick="goToFigure(1)" data-slide="1"></span>
+                            <span class="fig-indicator" onclick="goToFigure(2)" data-slide="2"></span>
+                            <span class="fig-indicator" onclick="goToFigure(3)" data-slide="3"></span>
+                        </div>
                     </div>
                 </div>
 
@@ -1058,6 +1284,56 @@
         </div>
     </div>
 
+    <!-- Figure Slideshow Script -->
+    <script>
+        let currentFigure = 0;
+        const totalFigures = 4;
+
+        function changeFigure(direction) {
+            const slides = document.querySelectorAll('.figure-slide');
+            const indicators = document.querySelectorAll('.fig-indicator');
+
+            // Remove active class
+            slides[currentFigure].classList.remove('active');
+            indicators[currentFigure].classList.remove('active');
+
+            // Update current figure
+            currentFigure = (currentFigure + direction + totalFigures) % totalFigures;
+
+            // Add active class to new figure
+            slides[currentFigure].classList.add('active');
+            indicators[currentFigure].classList.add('active');
+        }
+
+        function goToFigure(index) {
+            const slides = document.querySelectorAll('.figure-slide');
+            const indicators = document.querySelectorAll('.fig-indicator');
+
+            // Remove active class
+            slides[currentFigure].classList.remove('active');
+            indicators[currentFigure].classList.remove('active');
+
+            // Update current figure
+            currentFigure = index;
+
+            // Add active class to new figure
+            slides[currentFigure].classList.add('active');
+            indicators[currentFigure].classList.add('active');
+        }
+
+        // Keyboard navigation for figures
+        document.addEventListener('keydown', function(event) {
+            const slideshow = document.querySelector('.paper-figure-slideshow');
+            if (slideshow && event.target === document.body) {
+                if (event.key === 'ArrowLeft') {
+                    changeFigure(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeFigure(1);
+                }
+            }
+        });
+    </script>
+
     <!-- Lightbox Script -->
     <script>
         function openLightbox() {
@@ -1199,5 +1475,12 @@
     <script src="js/visualization.js"></script>
     <script src="js/animation.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 cryoSENSE. All rights reserved.</p>
+        <p>Designed by <a href="https://daniel-saeedi.github.io/" target="_blank">Daniel Saeedi</a></p>
+        <p>Built with <span class="footer-heart">♥</span> using <a href="https://claude.ai/code" target="_blank">Claude Code</a></p>
+    </footer>
 </body>
 </html>
