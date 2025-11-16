@@ -302,6 +302,113 @@
             transform: translateY(-2px) scale(1.02);
         }
 
+        /* GIF Comparison Section */
+        .gif-comparisons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .gif-comparison-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gif-comparison-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gif-comparison-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .gif-comparison-item img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gif-comparison-title {
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            opacity: 0.98;
+        }
+
+        @media (max-width: 768px) {
+            .gif-comparison-row {
+                flex-direction: column;
+            }
+        }
+
+        /* Top-left navigation links */
+        .top-nav-links {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            animation: slideInFromLeft 0.8s ease-out;
+        }
+
+        .top-nav-links .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            animation: floatButton 3s ease-in-out infinite;
+        }
+
+        .top-nav-links .btn:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .top-nav-links .btn:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .top-nav-links .btn:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatButton {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
         #interactive-demo {
             padding: 40px 20px 20px;
             background: #f7fafc;
@@ -352,6 +459,13 @@
     </style>
 </head>
 <body>
+    <!-- Top Navigation Links -->
+    <div class="top-nav-links">
+        <a href="#" class="btn btn-primary" target="_blank">Paper (arXiv)</a>
+        <a href="https://github.com/cryosense" class="btn" target="_blank">GitHub</a>
+        <a href="#interactive-demo" class="btn">Demo ↓</a>
+    </div>
+
     <!-- Landing Page Section -->
     <section id="landing-page">
         <div class="landing-content">
@@ -377,6 +491,39 @@
 
             <!-- Main Content -->
             <div class="main-content">
+                <!-- GIF Comparisons Section -->
+                <div class="gif-comparisons">
+                    <!-- 3D Volume Comparison -->
+                    <div class="gif-comparison-row">
+                        <h3 class="gif-comparison-title">3D Volume Reconstruction</h3>
+                    </div>
+                    <div class="gif-comparison-row">
+                        <div class="gif-comparison-item">
+                            <div class="gif-comparison-label">Ground Truth</div>
+                            <img src="assets/3d_volume.gif" alt="3D Volume Ground Truth">
+                        </div>
+                        <div class="gif-comparison-item">
+                            <div class="gif-comparison-label">cryoSENSE Reconstruction</div>
+                            <img src="assets/3d_volume.gif" alt="3D Volume cryoSENSE Reconstruction">
+                        </div>
+                    </div>
+
+                    <!-- Atomic Model Comparison -->
+                    <div class="gif-comparison-row">
+                        <h3 class="gif-comparison-title">Reconstructed Atomic Model</h3>
+                    </div>
+                    <div class="gif-comparison-row">
+                        <div class="gif-comparison-item">
+                            <div class="gif-comparison-label">Ground Truth</div>
+                            <img src="assets/reconstructed_atomic_model.gif" alt="Atomic Model Ground Truth">
+                        </div>
+                        <div class="gif-comparison-item">
+                            <div class="gif-comparison-label">cryoSENSE Reconstruction</div>
+                            <img src="assets/reconstructed_atomic_model.gif" alt="Atomic Model cryoSENSE Reconstruction">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Full Width Paper Figure -->
                 <div class="paper-figure-container">
                     <div class="paper-figure" id="main-figure" onclick="openLightbox()">
@@ -421,10 +568,6 @@
                         </div>
                     </div>
 
-                    <div class="links">
-                        <a href="#" class="btn btn-primary" target="_blank">Read Paper (PDF)</a>
-                        <a href="#interactive-demo" class="btn">Interactive Demo ↓</a>
-                    </div>
                 </div>
             </div>
         </div>
