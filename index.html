@@ -643,6 +643,173 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
+
+        /* Section Navigation Blobs */
+        .section-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-line {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Blue background state (landing page) */
+        .section-nav-item {
+            position: relative;
+            z-index: 1;
+            margin: 20px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-blob {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                        0 0 30px rgba(255, 255, 255, 0.3),
+                        0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-nav-item:hover .nav-blob {
+            transform: scale(1.3);
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+                        0 0 40px rgba(255, 255, 255, 0.5),
+                        0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-nav-item.active .nav-blob {
+            background: #74b9ff;
+            border-color: #ffffff;
+            transform: scale(1.5);
+            box-shadow: 0 0 25px rgba(116, 185, 255, 0.8),
+                        0 0 50px rgba(116, 185, 255, 0.5),
+                        0 0 75px rgba(255, 255, 255, 0.4),
+                        0 6px 20px rgba(0, 0, 0, 0.4);
+            animation: pulseBlue 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBlue {
+            0%, 100% {
+                box-shadow: 0 0 25px rgba(116, 185, 255, 0.8),
+                            0 0 50px rgba(116, 185, 255, 0.5),
+                            0 0 75px rgba(255, 255, 255, 0.4),
+                            0 6px 20px rgba(0, 0, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(116, 185, 255, 1),
+                            0 0 60px rgba(116, 185, 255, 0.7),
+                            0 0 90px rgba(255, 255, 255, 0.5),
+                            0 6px 20px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* White background state (other sections) */
+        .section-nav.on-white .nav-line {
+            background: rgba(9, 132, 227, 0.3);
+            box-shadow: 0 0 10px rgba(9, 132, 227, 0.2);
+        }
+
+        .section-nav.on-white .nav-blob {
+            background: rgba(9, 132, 227, 0.2);
+            border-color: #0984e3;
+            box-shadow: 0 0 15px rgba(9, 132, 227, 0.4),
+                        0 0 30px rgba(9, 132, 227, 0.2),
+                        0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-nav.on-white .section-nav-item:hover .nav-blob {
+            background: rgba(9, 132, 227, 0.3);
+            border-color: #0984e3;
+            box-shadow: 0 0 20px rgba(9, 132, 227, 0.6),
+                        0 0 40px rgba(9, 132, 227, 0.3),
+                        0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-nav.on-white .section-nav-item.active .nav-blob {
+            background: #0984e3;
+            border-color: #0984e3;
+            animation: pulseBlueOnWhite 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseBlueOnWhite {
+            0%, 100% {
+                box-shadow: 0 0 25px rgba(9, 132, 227, 0.6),
+                            0 0 50px rgba(9, 132, 227, 0.4),
+                            0 0 75px rgba(9, 132, 227, 0.2),
+                            0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(9, 132, 227, 0.8),
+                            0 0 60px rgba(9, 132, 227, 0.6),
+                            0 0 90px rgba(9, 132, 227, 0.3),
+                            0 6px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .nav-label {
+            position: absolute;
+            right: 35px;
+            white-space: nowrap;
+            background: rgba(9, 132, 227, 0.95);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-nav-item:hover .nav-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .nav-label::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid rgba(9, 132, 227, 0.95);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        /* Hide navigation on mobile */
+        @media (max-width: 768px) {
+            .section-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -652,6 +819,27 @@
         <a href="https://github.com/cryosense" class="btn" target="_blank">GitHub</a>
         <a href="#interactive-demo" class="btn">Demo ↓</a>
     </div>
+
+    <!-- Section Navigation Blobs -->
+    <nav class="section-nav" aria-label="Section Navigation">
+        <div class="nav-line"></div>
+        <div class="section-nav-item active" data-section="landing-page">
+            <div class="nav-blob"></div>
+            <span class="nav-label">Overview</span>
+        </div>
+        <div class="section-nav-item" data-section="interactive-demo">
+            <div class="nav-blob"></div>
+            <span class="nav-label">Pixel Masking Demo</span>
+        </div>
+        <div class="section-nav-item" data-section="fourier-masking-section">
+            <div class="nav-blob"></div>
+            <span class="nav-label">Fourier Masking</span>
+        </div>
+        <div class="section-nav-item" data-section="measurements-recon-section">
+            <div class="nav-blob"></div>
+            <span class="nav-label">Measurements vs Recon</span>
+        </div>
+    </nav>
 
     <!-- Landing Page Section -->
     <section id="landing-page">
@@ -1404,6 +1592,82 @@
                     nextSlide();
                 }
             });
+        });
+    </script>
+
+    <!-- Section Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.section-nav-item');
+            const sectionNav = document.querySelector('.section-nav');
+            const landingPage = document.getElementById('landing-page');
+            const sections = [];
+
+            // Store section references
+            navItems.forEach(item => {
+                const sectionId = item.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    sections.push({ element: section, navItem: item });
+                }
+            });
+
+            // Click to scroll to section
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Update navigation style based on background
+            function updateNavStyle() {
+                const scrollPosition = window.scrollY + window.innerHeight / 2;
+                const landingBottom = landingPage.offsetTop + landingPage.offsetHeight;
+
+                // If we're past the landing page (blue background), switch to white background style
+                if (scrollPosition > landingBottom) {
+                    sectionNav.classList.add('on-white');
+                } else {
+                    sectionNav.classList.remove('on-white');
+                }
+            }
+
+            // Highlight active section on scroll
+            function updateActiveSection() {
+                const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+                sections.forEach(({ element, navItem }, index) => {
+                    const sectionTop = element.offsetTop;
+                    const sectionBottom = sectionTop + element.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        navItems.forEach(item => item.classList.remove('active'));
+                        navItem.classList.add('active');
+                    }
+                });
+            }
+
+            // Combined update function
+            function updateNavigation() {
+                updateActiveSection();
+                updateNavStyle();
+            }
+
+            // Throttle scroll event for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) {
+                    window.cancelAnimationFrame(scrollTimeout);
+                }
+                scrollTimeout = window.requestAnimationFrame(updateNavigation);
+            });
+
+            // Initial check
+            updateNavigation();
         });
     </script>
 
